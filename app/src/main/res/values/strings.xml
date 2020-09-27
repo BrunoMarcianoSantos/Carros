@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Carros</string>
+    <string name="titulo">Marciano´s Performance</string>
+    <string name="potencia">Potência atual</string>
+    <string name="torque">Torque atual (valor inteiro)</string>
+    <string name="cilindradas">Cilindros no Motor (1, 2, 3...)</string>
+    <string name="aspiracao">Aspiração atual: Natural</string>
+    <string name="cambio">Transmissão atual: Manual</string>
+    <string name="tunar">Upgrade com Stage 1 de preparação</string>
+    <string name="tunar2">Upgrade com Stage 2 de preparação</string>
+    <string name="tunar3">Enviar dados por email para a avaliação da preparadora</string>
+    <string name="tunar4">Ligar para a prepadora, para mais informações imediatas</string>
+    <string name="atual">Especificações atuais</string>
+    <string name="stg1">Especificações depois do stage 1</string>
+    <string name="stg2">Especificações depois do stage 2</string>
+    <string name="end">Ver endereço no mapa</string>
+</resources>
