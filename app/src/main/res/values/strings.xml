@@ -13,5 +13,10 @@
     <string name="atual">Especificações atuais</string>
     <string name="stg1">Especificações depois do stage 1</string>
     <string name="stg2">Especificações depois do stage 2</string>
-    <string name="end">Ver endereço no mapa</string>
+    <string name="titulocad">Cadastrar Carro</string>
+    <string name="marca">Marca</string>
+    <string name="modelo">Modelo</string>
+    <string name="versao">Versão</string>
+    <string name="stage">Stage solicitado</string>
+    <string name="cadcarro">Cadastrar Carro</string>
 </resources>

@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -23,6 +25,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     SensorManager sensorManager;
     Sensor sensorLuminosity;
+
+    CheckBox chkTransmissao;
+    public static final String PREFERENCIAS_NAME = "com.example.carros";
+    public static final String PREFERENCIAS_VALOR = "com.example.carros";
+    private static final int REQUEST_PERMISSION = 1;
+    private boolean usesExternalStorage;
     public final static String EXTRA_MESSAGE_POTENCIA = "com.example.carros.POTENCIA";
     public final static String EXTRA_MESSAGE_TORQUE = "com.example.carros.TORQUE";
     public final static String EXTRA_MESSAGE_CILINDRADA = "com.example.carros.CILINDRADA";
@@ -47,12 +55,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         saveTorque = (EditText) findViewById(R.id.txtTorque);
         saveCilindrada = (EditText) findViewById(R.id.txtCc);
 
+        chkTransmissao = findViewById(R.id.chkTransmissao);
+
 
         if (savedInstanceState != null) {
             savePotencia.setText(savedInstanceState.getString(VALOR_POTENCIA));
             saveTorque.setText(savedInstanceState.getString(VALOR_TORQUE));
             saveCilindrada.setText(savedInstanceState.getString(VALOR_CILINDRADA));
         }
+        recuperar();
     }
 
     @Override
@@ -108,6 +119,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         saveCilindrada.setText(valorcilindrada);
     }
 
+    public void switchClick(View v)
+    {
+        usesExternalStorage = chkTransmissao.isChecked();
+        SharedPreferences settings = getSharedPreferences(PREFERENCIAS_NAME , 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(PREFERENCIAS_VALOR, usesExternalStorage);
+        editor.commit();
+    }
+
+    private void recuperar()
+    {
+        SharedPreferences settings = getSharedPreferences(PREFERENCIAS_NAME , 0);
+        usesExternalStorage = settings.getBoolean(PREFERENCIAS_VALOR, false);
+        chkTransmissao.setChecked(usesExternalStorage);
+    }
+
     public void EnviarStageum (View v)
     {
         EditText txtPotencia = findViewById(R.id.txtPotencia);
@@ -121,6 +148,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         String cilindrada = txtCilindrada.getText().toString();
         String aspiracao;
         String transmissao;
+
+
 
         if (chkAspiracao.isChecked()){
             aspiracao = "Natural";
@@ -229,6 +258,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Uri uri = Uri.parse("tel:985400506");
         Intent i = new Intent(Intent.ACTION_DIAL, uri);
         startActivity(i);
+    }
+
+    public void CadCarro (View v)
+    {
+        Intent intent = new Intent(this, CadcarroActivity.class);
+        startActivity(intent);
+    }
+
+    public void Backupcarro(View v)
+    {
+
     }
 
 }
